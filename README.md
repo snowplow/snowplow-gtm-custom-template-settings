@@ -1,4 +1,4 @@
-# Google Tag Manager Custom Templates for the Snowplow JavaScript Tracker
+# Snowplow Analytics Custom Settings Template
 
 ## Overview
 
