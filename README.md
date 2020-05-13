@@ -1,4 +1,4 @@
-# Snowplow Analytics Custom Settings Template
+# GTM Custom Template for JavaScript Tracker Settings
 
 ## Overview
 
