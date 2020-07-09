@@ -40,7 +40,7 @@ After pushing the changes, Google Tag Manager should update the template in the 
 | Variable Template |
 |----------------------------------|
 ![il][techdocs-image]
-| **[Technical Docs](https://www.simoahava.com/analytics/custom-templates/snowplow-analytics-settings/)** |
+| **[Technical Docs](https://www.simoahava.com/custom-templates/snowplow-analytics-settings/)** |
 
 ## Copyright and license
 
