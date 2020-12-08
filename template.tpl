@@ -536,6 +536,24 @@ ___TEMPLATE_PARAMETERS___
         "name": "maxPostBytes",
         "valueUnit": "bytes",
         "type": "TEXT"
+      },
+      {
+        "type": "SELECT",
+        "name": "beaconApi",
+        "displayName": "Enable use of Beacon API",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": false,
+            "displayValue": "False"
+          },
+          {
+            "value": true,
+            "displayValue": "True"
+          }
+        ],
+        "simpleValueType": true,
+        "defaultValue": false
       }
     ]
   },
@@ -651,6 +669,7 @@ return {
   bufferSize: data.bufferSize,
   postPath: data.postPath,
   maxPostBytes: data.maxPostBytes,
+  beacon: data.beaconApi ? true : false,
   contexts: {
     webPage: data.webPage,
     performanceTiming: data.performanceTiming,
@@ -682,14 +701,15 @@ scenarios:
     \ mockData.eventMethod,\n  encodeBase64: mockData.encodeBase64,\n  pageUnloadTimer:\
     \ mockData.pageUnloadTimer,\n  forceSecureTracker: false,\n  forceUnsecureTracker:\
     \ true,\n  bufferSize: mockData.bufferSize,\n  postPath: mockData.postPath,\n\
-    \  maxPostBytes: mockData.maxPostBytes,\n  contexts: {\n    webPage: mockData.webPage,\n\
-    \    performanceTiming: undefined,\n    gaCookies: undefined,\n    geolocation:\
-    \ mockData.geolocation,\n    optimizelyExperiments: undefined,\n    optimizelyStates:\
-    \ undefined,\n    optimizelyVariations: undefined,\n    optimizelyVisitor: undefined,\n\
-    \    optimizelyAudiences: undefined,\n    optimizelyDimensions: undefined,\n \
-    \   optimizelySummary: undefined,\n    optimizelyXSummary: undefined,\n    parrable:\
-    \ undefined\n  }\n};\n  \n// Call runCode to run the template's code.\nconst variableResult\
-    \ = runCode(mockData);\n\n// Verify that the variable returns a result.\nassertThat(variableResult).isEqualTo(expected);"
+    \  maxPostBytes: mockData.maxPostBytes,\n  beacon: false,\n  contexts: {\n   \
+    \ webPage: mockData.webPage,\n    performanceTiming: undefined,\n    gaCookies:\
+    \ undefined,\n    geolocation: mockData.geolocation,\n    optimizelyExperiments:\
+    \ undefined,\n    optimizelyStates: undefined,\n    optimizelyVariations: undefined,\n\
+    \    optimizelyVisitor: undefined,\n    optimizelyAudiences: undefined,\n    optimizelyDimensions:\
+    \ undefined,\n    optimizelySummary: undefined,\n    optimizelyXSummary: undefined,\n\
+    \    parrable: undefined\n  }\n};\n  \n// Call runCode to run the template's code.\n\
+    const variableResult = runCode(mockData);\n\n// Verify that the variable returns\
+    \ a result.\nassertThat(variableResult).isEqualTo(expected);"
 setup: |-
   const mockData = {
     appId: 'appId',
@@ -712,6 +732,7 @@ setup: |-
     bufferSize: '123',
     postPath: 'postPath',
     maxPostBytes: '123',
+    beacon: false,
     webPage: true,
     geolocation: true
   };
