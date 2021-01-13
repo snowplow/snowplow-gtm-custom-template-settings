@@ -622,6 +622,12 @@ ___TEMPLATE_PARAMETERS___
         "name": "parrable",
         "checkboxText": "parrable",
         "type": "CHECKBOX"
+      },
+      {
+        "simpleValueType": true,
+        "name": "clientHints",
+        "checkboxText": "Chrome Client Hints",
+        "type": "CHECKBOX"
       }
     ]
   }
@@ -664,7 +670,9 @@ return {
     optimizelyDimensions: data.optimizelyDimensions,
     optimizelySummary: data.optimizelySummary,
     optimizelyXSummary: data.optimizelyXSummary,
-    parrable: data.parrable
+    parrable: data.parrable,
+    clientHints: data.clientHints
+    
   }
 };
 
