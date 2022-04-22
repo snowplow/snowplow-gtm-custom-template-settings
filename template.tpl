@@ -11,7 +11,7 @@ ___INFO___
 {
   "displayName": "Snowplow Analytics Settings",
   "description": "The Snowplow Analytics Settings variable can be used to easily apply a set of tracker configuration parameters to tags created with the Snowplow Analytics tag template.",
-  "__wm": "VGVtcGxhdGUtQXV0aG9yX1Nub3dwbG93QW5hbHl0aWNzU2V0dGluZ3MtU2ltby1BaGF2YQ==",
+  "__wm": "VGVtcGxhdGUtQXV0aG9yX1Nub3dwbG93QW5hbHl0aWNzU2V0dGluZ3MtU2ltby1BaGF2YQ\u003d\u003d",
   "securityGroups": [],
   "categories": [
     "ANALYTICS"
@@ -630,6 +630,8 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
+const makeInteger = require('makeInteger');
+
 return {
   type: 'snowplow',
   appId: data.appId,
@@ -645,7 +647,7 @@ return {
   maxLocalStorageQueueSize: data.maxLocalStorageQueueSize,
   eventMethod: data.eventMethod,
   encodeBase64: data.encodeBase64,
-  pageUnloadTimer: data.pageUnloadTimer,
+  pageUnloadTimer: makeInteger(data.pageUnloadTimer),
   forceSecureTracker: data.forceProtocol === 'https',
   forceUnsecureTracker: data.forceProtocol === 'http',
   bufferSize: data.bufferSize,
@@ -673,23 +675,24 @@ ___TESTS___
 
 scenarios:
 - name: Variable returns expected object
-  code: "const expected = {\n  type: 'snowplow',\n  appId: mockData.appId,\n  platform:\
-    \ mockData.customPlatform,\n  respectDoNotTrack: mockData.respectDoNotTrack,\n\
-    \  stateStorageStrategy: mockData.stateStorageStrategy,\n  cookieDomain: false,\n\
-    \  discoverRootDomain: true,\n  cookieName: mockData.cookieName,\n  cookieLifetime:\
-    \ mockData.customCookieLifetime,\n  cookieSameSite: null,\n  cookieSecure: mockData.cookieSecure,\n\
-    \  maxLocalStorageQueueSize: mockData.maxLocalStorageQueueSize,\n  eventMethod:\
-    \ mockData.eventMethod,\n  encodeBase64: mockData.encodeBase64,\n  pageUnloadTimer:\
-    \ mockData.pageUnloadTimer,\n  forceSecureTracker: false,\n  forceUnsecureTracker:\
-    \ true,\n  bufferSize: mockData.bufferSize,\n  postPath: mockData.postPath,\n\
-    \  maxPostBytes: mockData.maxPostBytes,\n  contexts: {\n    webPage: mockData.webPage,\n\
-    \    performanceTiming: undefined,\n    gaCookies: undefined,\n    geolocation:\
-    \ mockData.geolocation,\n    optimizelyExperiments: undefined,\n    optimizelyStates:\
-    \ undefined,\n    optimizelyVariations: undefined,\n    optimizelyVisitor: undefined,\n\
-    \    optimizelyAudiences: undefined,\n    optimizelyDimensions: undefined,\n \
-    \   optimizelySummary: undefined,\n    optimizelyXSummary: undefined,\n    parrable:\
-    \ undefined\n  }\n};\n  \n// Call runCode to run the template's code.\nconst variableResult\
-    \ = runCode(mockData);\n\n// Verify that the variable returns a result.\nassertThat(variableResult).isEqualTo(expected);"
+  code: "const makeInt = require('makeInteger');\n\nconst expected = {\n  type: 'snowplow',\n\
+    \  appId: mockData.appId,\n  platform: mockData.customPlatform,\n  respectDoNotTrack:\
+    \ mockData.respectDoNotTrack,\n  stateStorageStrategy: mockData.stateStorageStrategy,\n\
+    \  cookieDomain: false,\n  discoverRootDomain: true,\n  cookieName: mockData.cookieName,\n\
+    \  cookieLifetime: mockData.customCookieLifetime,\n  cookieSameSite: null,\n \
+    \ cookieSecure: mockData.cookieSecure,\n  maxLocalStorageQueueSize: mockData.maxLocalStorageQueueSize,\n\
+    \  eventMethod: mockData.eventMethod,\n  encodeBase64: mockData.encodeBase64,\n\
+    \  pageUnloadTimer: makeInt(mockData.pageUnloadTimer),\n  forceSecureTracker:\
+    \ false,\n  forceUnsecureTracker: true,\n  bufferSize: mockData.bufferSize,\n\
+    \  postPath: mockData.postPath,\n  maxPostBytes: mockData.maxPostBytes,\n  contexts:\
+    \ {\n    webPage: mockData.webPage,\n    performanceTiming: undefined,\n    gaCookies:\
+    \ undefined,\n    geolocation: mockData.geolocation,\n    optimizelyExperiments:\
+    \ undefined,\n    optimizelyStates: undefined,\n    optimizelyVariations: undefined,\n\
+    \    optimizelyVisitor: undefined,\n    optimizelyAudiences: undefined,\n    optimizelyDimensions:\
+    \ undefined,\n    optimizelySummary: undefined,\n    optimizelyXSummary: undefined,\n\
+    \    parrable: undefined\n  }\n};\n  \n// Call runCode to run the template's code.\n\
+    const variableResult = runCode(mockData);\n\n// Verify that the variable returns\
+    \ a result.\nassertThat(variableResult).isEqualTo(expected);"
 setup: |-
   const mockData = {
     appId: 'appId',

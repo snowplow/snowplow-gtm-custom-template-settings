@@ -18,7 +18,7 @@ To **import** the template into Google Tag Manager:
 2. From the template action menu, choose **Import**.
 3. Locate the `template.tpl` file from this repo, and import it into the template editor.
 
-Make the changes you wish. Make sure the unit tests pass (in the **Tests** tab of the editor). Update the tests if necessary. 
+Make the changes you wish. Make sure the unit tests pass (in the **Tests** tab of the editor). Update the tests if necessary.
 
 Once you're done, follow these steps:
 
@@ -44,7 +44,7 @@ After pushing the changes, Google Tag Manager should update the template in the 
 
 ## Copyright and license
 
-Significant portions copyright 2020 Simo Ahava. Remainder copyright 2020 Snowplow Analytics Ltd. All rights reserved.
+Significant portions copyright 2020 Simo Ahava. Remainder copyright 2020-2022 Snowplow Analytics Ltd. All rights reserved.
 
 Licensed under the **[Apache License, Version 2.0][license]** (the "License");
 you may not use this software except in compliance with the License.
